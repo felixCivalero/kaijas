@@ -392,16 +392,7 @@ function App() {
           className="logo"
           onClick={(event) => (window.location.href = "/")}
         />
-        <h2>
-          <span aria-label="Sunflower" role="img">
-            🌻
-          </span>{" "}
-          Sommarstängt{" "}
-          <span aria-label="Sunflower" role="img">
-            🌻
-          </span>
-        </h2>
-        <h3>Välkomna åter den 3e Augusti</h3>
+        <h3>Ons-lör 16-22</h3>
         <p>
           Håll utkik på vår{" "}
           <a href="https://instagram.com/kaijasalong">instagram</a> eller bli{" "}
@@ -538,7 +529,7 @@ function App() {
       </div>
       <div className="about__kaija op__content op__content--1">
         <Kaija className="kaija__image" />
-        <h2>Farmor Kaija 1964 - 2021</h2>
+        <h2>Farmor Kaija 1946 - 2021</h2>
         <p>
           <strong>"Men det är ju som i Wein eller Paris!", </strong> utbrast jag
           glatt när vi möttes för första gången. Jag satte mig vid pianot och
@@ -916,10 +907,9 @@ function App() {
       <div className="food__kaija op__content op__content--3">
         <h2>Vi utvecklar vår meny</h2>
         <p>
-          Vi har stängt under sommaren och passar då på att utveckla vår meny
-          tillsammans med{" "}
-          <a href="https://instagram.com/cespedes.louis">Louis</a>. Vi är åter i
-          augusti - välkomna då.{" "}
+          Den 10e augusti är vi åter efter sommarledigheten. Följ oss på{" "}
+          <a href="https://www.instagram.com/kaijasalong/">instagram</a> eller
+          bli Kaijas-vän för att vara uppdaterad om vår nya meny.{" "}
         </p>
       </div>
       <div className="contact__kaija op__content op__content--4">

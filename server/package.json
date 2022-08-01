@@ -16,6 +16,7 @@
     "multer": "^1.4.4-lts.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.5",
+    "nodemailer-express-handlebars": "^5.0.0",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {

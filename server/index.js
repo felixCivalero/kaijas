@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
+const path = require("path");
+
 // Allowing to send from front-end to my own API
 const cors = require("cors");
 const nodemailer = require("nodemailer");
@@ -138,38 +140,6 @@ app.post("/uploadBand", (req, res) => {
     <p>Vsg brysh,<br>Felix</p>
     `,
   };
-  const options2 = {
-    from: "do-not-reply@kaijasalong.com",
-    to: bandMail,
-    subject: "Tack för din förfrågan!",
-    html: `<h3>Vad kul att ni vill spela hos oss på Sveriges minsta live-scen</h3>
-   <p>Vi kommer höra av oss till dig/er för att hitta ett datum så fort vi har läst igenom det du/ni har skickat och bestämt oss för om vi tror att er musik skulle passa här hos oss. Under tiden kommer här lite allmän info om hur det går till hos oss om vi väljer att boka in dig/er för spelning, läs igenom i lugn och ro! 😊</p>
-   <p><strong>Allmän info, tider & logistik</strong></p>
-   <ul>
-   <li>Alla spelningar börjar kl. 18:30</li>
-   <li>Än så länge tillhandahåller vi endast piano, resterande material måste därför tas med på egen hand.</li>
-   <li>Mellan kl.13:00-16:00 samma dag som spelningen kan du/ni komma för sound check och lämna era saker.</li>
-   <li>Av erfarenhet fungerar 2 set x ca 45 min eller 3 set x ca 30 min bäst (pauser omkring 10 min).</li>
-   <li>Servering till gästerna fortsätter under spelningens gång, vi försöker undvika matlagning men det är inget vi kan garantera.</li>
-   </ul>
-   <p><strong>Allmän info, ersättning & marknadsföring</strong></p>
-   <p>P.g.a vår storlek har vi en så kallad “på-dörren-policy”, vi säljer alltså biljetter till alla våra spelningar och din/er ersättning beror på hur många platser som bokas (dock lägst 1000kr). - Därför är det extra viktigt även för din/er skull att vara noga med att marknadsföra i god tid och många gånger på sociala medier och bland vänner/familj. 
-
-   Vi ser helst att du/ni börjar ca 3 veckor innan spelningens datum och att det läggs ut minimum 3 inlägg under tiden. Vi gör snygga bilder som ni kan använda på sociala medier samt ett Facebook-evenemang via vår sida “Kaijas Musiksalong” där vi bjuder in er att vara co-host, på så sätt kan ni bjuda in era kontakter och dela evenemanget på er egen sida eller privata profil.</p>
-   <p>Vidare...</p>
-   <ul>
-   <li>Vi kommer tillsammans fram till ett biljettpris som rör sig mellan 150-350kr.</li>
-   <li>Vi tar betalt för biljetterna genom att lägga på biljettpriset på gästernas nota, du/ni får 80% och vi 20% (exkl. moms) av den totala summan, vilken betalas ut på faktura (om inget annat överenskommes).</li>
-   <li>Gästerna måste för-boka sina platser via vår hemsida www.kaijasalong.com under fliken “på scen” där kommande spelningar visas, alternativt kan de ringa telefonnummer 073-423 35 04. Detta bör anvisas tydligt när ni lägger ut om spelningen.</li>
-   <li>Vi tar in maximalt 27 personer i lokalen. </li>
-   <li>Vi bjuder på läsk/vatten och snacks till dig/er som spelar.</li>
-   <li>Vi bjuder på en maträtt och en dryck per bandmedlem, dock endast om ersättningen betalas ut via faktura, om swish-skylt önskas användas får vi ingen andel och kan därför inte bjuda på förtäring.</li>
-   </ul>
-
-
-    <p>Tack igen för ditt intresse! Vi är så glada att du har hittat oss!<br>/ Saga & Felix på Kaijas Musiksalong 🎉</p>
-    `,
-  };
 
   db.query(
     "INSERT INTO artists (band_name, contact_name, email, phone, genre, artists_link, band_social, band_desc, band_PIN) VALUES (?,?,?,?,?,?,?,?,?)",
@@ -195,11 +165,6 @@ app.post("/uploadBand", (req, res) => {
             throw err;
           }
         });
-        transporter.sendMail(options2, function (err, info) {
-          if (err) {
-            throw err;
-          }
-        });
       }
     }
   );
@@ -216,12 +181,12 @@ app.post("/uploadCostumer", (req, res) => {
     to: costumerMail,
     subject: `Kaijas <3 ${costumerName.split(" ")[0]}`,
     html: `<h1>Du har registrerats som en av Kaijas vänner</h1>
-    <h3>Nu är du först med att få nys om våra nyheter</h3>
-   
-    <p>Som Sveriges minsta live-scen blir våra intima konserter snabbt utsålda. Som Kaijas-vän får du information om våra spelningar och events före de publiceras offentligt. Du får också ta del av specialerbjudanden och bättre priser!</p>
-
-    <p>Vi hörs snart igen!<br>Felix och Saga på Kaijas</p>
-    `,
+      <h3>Nu är du först med att få nys om våra nyheter</h3>
+     
+      <p>Som Sveriges minsta live-scen blir våra intima konserter snabbt utsålda. Som Kaijas-vän får du information om våra spelningar och events före de publiceras offentligt. Du får också ta del av specialerbjudanden och bättre priser!</p>
+  
+      <p>Vi hörs snart igen!<br>Felix och Saga på Kaijas</p>
+      `,
   };
 
   db.query(
