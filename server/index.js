@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport({
 
 /*-----------------LOGIN USER INFO-----------*/
 
-app.get("/getLoginInfo", (req, res) => {
+app.get("/api/getLoginInfo", (req, res) => {
   db.query(
     "select email, band_PIN FROM artists WHERE band_id = 1",
     (err, result) => {
@@ -45,7 +45,7 @@ app.get("/getLoginInfo", (req, res) => {
 });
 
 /*-----------------UPLOAD CONCERT TO SERVER-----------*/
-app.post("/uploadArtist", (req, res) => {
+app.post("/api/uploadArtist", (req, res) => {
   const { name, genre, price, date, time, desc } = req.body;
   const options = {
     from: "do-not-reply@kaijasalong.com",
@@ -84,7 +84,7 @@ app.post("/uploadArtist", (req, res) => {
 
 /*-----------------GET CONCERT-----------*/
 
-app.get("/getConcert", (req, res) => {
+app.get("/api/getConcert", (req, res) => {
   let currDate = new Date();
   let date =
     currDate.getFullYear() +
@@ -106,7 +106,7 @@ app.get("/getConcert", (req, res) => {
 
 /*-----------------UPLOAD BAND REGUEST TO SERVER AND EMAIL artist@kaijasalong.com-----------*/
 
-app.post("/uploadBand", (req, res) => {
+app.post("/api/uploadBand", (req, res) => {
   const {
     bandName,
     bandContact,
@@ -172,7 +172,7 @@ app.post("/uploadBand", (req, res) => {
 
 /*-----------------UPLOAD vänner TO SERVER and EMAIL confimration-----------*/
 
-app.post("/uploadCostumer", (req, res) => {
+app.post("/api/uploadCostumer", (req, res) => {
   const { costumerName, costumerMail, costumerPhone, costumerInterest } =
     req.body;
 
@@ -209,7 +209,7 @@ app.post("/uploadCostumer", (req, res) => {
 });
 
 /*-------------------BOOKINGS------------*/
-app.post("/uploadBooking", (req, res) => {
+app.post("/api/uploadBooking", (req, res) => {
   const {
     guestsName: bookingName,
     guestsMail: bookingMail,
@@ -268,7 +268,7 @@ app.post("/uploadBooking", (req, res) => {
   );
 });
 
-app.post("/uploadWaiting", (req, res) => {
+app.post("/api/uploadWaiting", (req, res) => {
   const {
     waitingName,
     waitingMail,
@@ -331,7 +331,7 @@ app.post("/uploadWaiting", (req, res) => {
   );
 });
 
-app.post("/updateConcert", (req, res) => {
+app.post("/api/updateConcert", (req, res) => {
   const { id, capacity: availability } = req.body;
   db.query(
     `UPDATE concerts SET max_guests = '${availability}' WHERE concerts.artists_id = '${id}';`,
